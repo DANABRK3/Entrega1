@@ -93,8 +93,8 @@ def crear_vendedores(request):
 
 
 def editar_vendedores(request):
-    localidad_consulta = 'LocalidadTest'
-    Vendedores.objects.filter(localidad=localidad_consulta).update(localidad='LocalidadTest')
+    localidad_consulta = 'LocalidadTest1'
+    Vendedores.objects.filter(localidad=localidad_consulta).update(localidad='LocalidadTest1')
     return HttpResponse(f'La localidad {localidad_consulta} ha sido actualizado')
 
 
@@ -116,4 +116,19 @@ class vendedoresList (ListView):
 class vendedoresCreate (CreateView):
     model = Vendedores
     fields = '__all__'
-    success_url = 'AppCoder/vendedores/list'
+    success_url = '/AppCoder/vendedores/list/'
+
+class vendedoresEdit(UpdateView):
+    model = Vendedores
+    fields = '__all__'
+    success_url = '/AppCoder/vendedores/list/'
+
+from django.views.generic.detail import DetailView
+
+class vendedoresDetail (DetailView):
+    model = Vendedores
+    template = 'AppCoder/vendedores_detail.html'
+
+class vendedoresDelete (DeleteView):
+    model = Vendedores
+    success_url = '/AppCoder/vendedores/list/'

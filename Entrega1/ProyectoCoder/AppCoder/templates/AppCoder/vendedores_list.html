@@ -3,17 +3,20 @@
 {% load static %}{
 
 {% block contenidoQueCambia %}
+<a class="btn btn-primary" href="{% url 'New' %}">Nuevo Vendedor</a>  
 <h3> Vendedores de Marketplace</h3>
+ 
     <ul>
         {% for vendedores in object_list%}
             <p> {{vendedores.localidad}}</p>
             <p> 
-                <a href="">Ver</a>
+                <a href="{% url 'Detail' vendedores.id %}">Ver</a>
                 <a href="{% url 'Edit' vendedores.id %}">Editar</a>
-                <a href="">Eliminar</a>
+                <a href="{% url 'Delete' vendedores.id %}">Eliminar</a>
+                
             </p>
 
         {%endfor%}
     </ul>
-        
+    
 {% endblock %}

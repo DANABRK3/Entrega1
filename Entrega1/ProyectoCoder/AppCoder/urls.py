@@ -15,7 +15,10 @@ urlpatterns = [
     path('crearVendedores/', views.crear_vendedores),
     path('editarVendedores/', views.editar_vendedores),
     path('eliminarVendedores/', views.eliminar_vendedores),
-    path('vendedores/list/', views.vendedoresList.as_view()),
-    path('vendedores/create/', views.vendedoresCreate.as_view())
-
-]
+    path('vendedores/list/', views.vendedoresList.as_view(),name='List'),
+    path('vendedores/create/', views.vendedoresCreate.as_view(),name='New'),
+    path('vendedores/edit/<pk>', views.vendedoresEdit.as_view(),name='Edit'),
+    path('vendedores/detail/<pk>', views.vendedoresDetail.as_view(),name='Detail'),
+    path('vendedores/delete/<pk>', views.vendedoresDelete.as_view(),name='Delete'),
+   
+    ]
