@@ -11,4 +11,7 @@ urlpatterns = [
     path('vendedoresApi/', views.vendedoresapi),
     path('busquedaCategoria/', views.buscarcategoria),
     path('buscar/', views.buscar),
+    path('vendedores/list/', views.vendedoresList.as_view()),
+    path('vendedores/create/', views.vendedoresCreate.as_view())
+
 ]

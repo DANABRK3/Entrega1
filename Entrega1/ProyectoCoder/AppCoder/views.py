@@ -80,4 +80,16 @@ def productosapi(request):
 
 def vendedoresapi(request):
     vendedores_todos = Vendedores.objects.all()
-    return HttpResponse(serializers.serialize('json',vendedores_todos))
+    return HttpResponse(serializers.serialize('json',vendedores_todos))}
+
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView,UpdateView,DeleteView
+
+class vendedoresList (ListView):
+    model = Vendedores
+    template = 'AppCoder/vendedores_list.html'
+
+class vendedoresCreate (CreateView):
+    model = Vendedores
+    fields = '__all__'
+    success_url = 'AppCoder/vendedores/list'
