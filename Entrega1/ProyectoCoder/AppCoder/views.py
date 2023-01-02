@@ -80,7 +80,31 @@ def productosapi(request):
 
 def vendedoresapi(request):
     vendedores_todos = Vendedores.objects.all()
-    return HttpResponse(serializers.serialize('json',vendedores_todos))}
+    return HttpResponse(serializers.serialize('json',vendedores_todos))
+
+def leer_vendedores(request):
+    vendedores_todos = Vendedores.objects.all()
+    return HttpResponse(serializers.serialize('json',vendedores_todos))
+
+def crear_vendedores(request):
+    vendedores = Vendedores(localidad='LocalidadTest',calificacion='10',tiempo_de_entrega='5')
+    vendedores.save()
+    return HttpResponse(f'Vendedores de la localidad de {vendedores.localidad} ha sido creado')
+
+
+def editar_vendedores(request):
+    localidad_consulta = 'LocalidadTest'
+    Vendedores.objects.filter(localidad=localidad_consulta).update(localidad='LocalidadTest')
+    return HttpResponse(f'La localidad {localidad_consulta} ha sido actualizado')
+
+
+def eliminar_vendedores(request):
+    localidad_nuevo='LocalidadNuevoVendedorTest'
+    vendedores = Vendedores.objects.get(localidad=localidad_nuevo)
+    vendedores.delete()
+    return HttpResponse(f'Vendedor de la localidad {localidad_nuevo} ha sido eliminado')
+
+# CRUD: CREATE,READ,UPDATE,DELETE   
 
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView,UpdateView,DeleteView
